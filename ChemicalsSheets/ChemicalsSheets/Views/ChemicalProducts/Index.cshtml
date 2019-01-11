@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR, Knockout JS and SqlTableDependency</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 20px">
+        @*@RenderBody()*@
+        <table class="table table-striped">
+            <thead style="background-color: silver">
+                <tr>
+                    <th>Product Id</th>
+                    <th>File Name</th>
+                    <th>Is Available</th>
+                   
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: products">
+                <tr>
+                    <td><span data-bind="text: $data.Id"></span></td>
+                    <td><span data-bind="text: $data.FilePath"></span></td>
+                    <td><span data-bind="text: $data.IsAvailable"></span></td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    Hello
+    @section Scripts {
+            <script src="~/Scripts/jquery.UI-1.10.js"></script>
+            <script src="~/Scripts/ChemicalProductsViewModels.js"></script>
+            <script src="~/Scripts/ChemicalProductsTicker.js"></script>
+    }
+
+   
+</body>
+</html>

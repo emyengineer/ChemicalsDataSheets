@@ -1,0 +1,75 @@
+﻿@model   IEnumerable<ChemicalsSheets.Models.tblProduct>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <title>SignalR, Knockout JS and SqlTableDependency</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>*@
+
+    <div class="jumbotron">
+        <h1>Safety Data Sheets for Chemicals</h1>
+        <p class="lead">Available Chemicals records are: @Model.Count()</p>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 text-success">
+            @ViewBag.FileStatus
+        </div>
+    </div>
+    <table class="table table-hover table-dark">
+        <thead style="background-color: silver">
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th scope="col" class="col-md-6 ">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+
+                <th scope="col" class="col-md-3">Save/Download</th>
+                <th scope="col" class="col-md-3">Get File from DB</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: flights">
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <th scope="row">@product.Id</th>
+                    <td>
+                        <a class="btn btn-primary" href="@product.Url"> @product.ProductName </a>
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Save", "Browse", new { Id = product.Id, productName = product.ProductName, productUrl = product.Url }, htmlAttributes: new { @class = "control-button col-md-2" })
+
+                    </td>
+                    <td>
+               @if (product.IsAvailable.HasValue && product.IsAvailable.Value == true)
+                {
+                   @Html.ActionLink("Open file from DB", "Open", new { Id = product.Id })
+                 }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+@*</body>
+</html>*@
+
+    @section Scripts {
+          
+    }

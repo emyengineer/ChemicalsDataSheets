@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="chemicalsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'chemicals.dbo.tblProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Url" />
+    </Key>
+    <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Url" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="chemicalsModelStoreContainer">
+    <EntitySet Name="tblProduct" EntityType="Self.tblProduct" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblProduct].[ProductName] AS [ProductName], 
+    [tblProduct].[SupplierName] AS [SupplierName], 
+    [tblProduct].[Url] AS [Url], 
+    [tblProduct].[UserName] AS [UserName], 
+    [tblProduct].[Password] AS [Password]
+    FROM [dbo].[tblProduct] AS [tblProduct]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
